@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoList from "./TodoList";
 
 export default function Form() {
 
@@ -36,31 +37,7 @@ export default function Form() {
     <form onSubmit={handleSubmit}>
       <input placeholder="Type Your Task"></input>
       <button>Add Task</button>
-      <div>
-        {tasks.map((task, index) => {
-          return (
-            <div key={task.id}>
-              <input
-                type="checkbox"
-                style={{ marginRight: "3px" }}
-                onClick={(e) => handleToggle(e, index)}
-              ></input>
-              <p
-                style={{ display: "inline-block" }}
-                className={task.done ? "done" : ""}
-              >
-                {task.name}
-              </p>
-              <button
-                style={{ color: "red", marginLeft: "3px" }}
-                onClick={(e) => onDelete(task.id)}
-              >
-                x
-              </button>
-            </div>
-          );
-        })}
-      </div>
+      <TodoList onToggle={handleToggle} tasks={tasks} onDelete={onDelete} />
     </form>
   );
 }
